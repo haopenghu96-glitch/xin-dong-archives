@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
   title: "心动小猪恋爱档案",
@@ -34,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body style={{ "--paper-noise-image": `url(${assetPath("/textures/paper-noise.svg")})` } as React.CSSProperties}>{children}</body>
     </html>
   );
 }

@@ -3,6 +3,7 @@ import {
   type CurrentFoodId,
   type LegacyActivityId,
 } from "@/lib/food-migration";
+import { assetPath } from "@/lib/asset-path";
 
 const declineSteps = [
   {
@@ -91,7 +92,7 @@ const foodOptions = [
   {
     id: "hotpot",
     label: "火锅",
-    imageSrc: "/food/hotpot.png",
+    imageSrc: assetPath("/food/hotpot.png"),
     fallbackIcon: "hotpot",
     tone: "coral",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -102,7 +103,7 @@ const foodOptions = [
   {
     id: "sushi",
     label: "日料",
-    imageSrc: "/food/sushi.png",
+    imageSrc: assetPath("/food/sushi.png"),
     fallbackIcon: "sushi",
     tone: "mint",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -113,7 +114,7 @@ const foodOptions = [
   {
     id: "bbq",
     label: "烤肉",
-    imageSrc: "/food/bbq.png",
+    imageSrc: assetPath("/food/bbq.png"),
     fallbackIcon: "bbq",
     tone: "yellow",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -124,7 +125,7 @@ const foodOptions = [
   {
     id: "hunan",
     label: "湘菜",
-    imageSrc: "/food/hunan.png",
+    imageSrc: assetPath("/food/hunan.png"),
     fallbackIcon: "hunan",
     tone: "coral",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -135,7 +136,7 @@ const foodOptions = [
   {
     id: "western",
     label: "西餐",
-    imageSrc: "/food/western.png",
+    imageSrc: assetPath("/food/western.png"),
     fallbackIcon: "western",
     tone: "lavender",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -146,7 +147,7 @@ const foodOptions = [
   {
     id: "dessert",
     label: "甜品",
-    imageSrc: "/food/dessert.png",
+    imageSrc: assetPath("/food/dessert.png"),
     fallbackIcon: "dessert",
     tone: "rose",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -157,7 +158,7 @@ const foodOptions = [
   {
     id: "coffee",
     label: "咖啡",
-    imageSrc: "/food/coffee.png",
+    imageSrc: assetPath("/food/coffee.png"),
     fallbackIcon: "coffee",
     tone: "cream",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -168,7 +169,7 @@ const foodOptions = [
   {
     id: "snacks",
     label: "小吃",
-    imageSrc: "/food/snacks.png",
+    imageSrc: assetPath("/food/snacks.png"),
     fallbackIcon: "snacks",
     tone: "blue",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -179,7 +180,7 @@ const foodOptions = [
   {
     id: "surprise",
     label: "交给你",
-    imageSrc: "/food/surprise.png",
+    imageSrc: assetPath("/food/surprise.png"),
     fallbackIcon: "surprise",
     tone: "yellow",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -294,48 +295,48 @@ export const invitationConfig = {
   foodOptions,
   mascots: {
     serious: {
-      src: "/mascot/heart-pig-q/serious-review.png",
-      fallbackSrc: "/mascot/heart-pig-q/serious-review.png",
+      src: assetPath("/mascot/heart-pig-q/serious-review.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig-q/serious-review.png"),
       alt: "抱着申请板努力装镇定的小猪",
     },
     surprised: {
-      src: "/mascot/heart-pig-q/surprised-reaction.png",
-      fallbackSrc: "/mascot/heart-pig-q/serious-review.png",
+      src: assetPath("/mascot/heart-pig-q/surprised-reaction.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig-q/serious-review.png"),
       alt: "捂着脸惊喜睁大眼的小猪",
     },
     hunter: {
-      src: "/mascot/heart-pig/hunter-chase.png",
-      fallbackSrc: "/mascot/heart-pig/serious-review.png",
+      src: assetPath("/mascot/heart-pig/hunter-chase.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
       alt: "拿着捕心网追线索的小猪",
     },
     hunterReady: {
-      src: "/mascot/heart-pig/hunter-ready.png",
-      fallbackSrc: "/mascot/heart-pig/hunter-chase.png",
+      src: assetPath("/mascot/heart-pig/hunter-ready.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig/hunter-chase.png"),
       alt: "举着捕心网认真瞄准的小猪",
     },
     hunterLunge: {
-      src: "/mascot/heart-pig/hunter-lunge.png",
-      fallbackSrc: "/mascot/heart-pig/hunter-chase.png",
+      src: assetPath("/mascot/heart-pig/hunter-lunge.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig/hunter-chase.png"),
       alt: "伸出捕心网向前扑的小猪",
     },
     hunterMiss: {
-      src: "/mascot/heart-pig/hunter-miss.png",
-      fallbackSrc: "/mascot/heart-pig/hunter-chase.png",
+      src: assetPath("/mascot/heart-pig/hunter-miss.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig/hunter-chase.png"),
       alt: "扑空后被捕心网罩住的小猪",
     },
     chef: {
-      src: "/mascot/heart-pig/chef-expectation.png",
-      fallbackSrc: "/mascot/heart-pig/serious-review.png",
+      src: assetPath("/mascot/heart-pig/chef-expectation.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
       alt: "戴厨师帽抱着面碗的小猪",
     },
     courier: {
-      src: "/mascot/heart-pig/courier-envelope.png",
-      fallbackSrc: "/mascot/heart-pig/serious-review.png",
+      src: assetPath("/mascot/heart-pig/courier-envelope.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
       alt: "抱着爱心信封奔跑的小猪",
     },
     cool: {
-      src: "/mascot/heart-pig/cool-approved.png",
-      fallbackSrc: "/mascot/heart-pig/serious-review.png",
+      src: assetPath("/mascot/heart-pig/cool-approved.png"),
+      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
       alt: "举着批准章庆祝的小猪",
     },
   },

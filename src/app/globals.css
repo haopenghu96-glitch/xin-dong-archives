@@ -33,7 +33,7 @@ body {
   overflow-x: hidden;
   color: var(--cocoa);
   background-color: var(--milk-pink);
-  background-image: url("/textures/paper-noise.svg"), radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.38) 0, rgba(255, 255, 255, 0.12) 24%, transparent 48%);
+  background-image: var(--paper-noise-image), radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.38) 0, rgba(255, 255, 255, 0.12) 24%, transparent 48%);
   font-family: var(--font-sans);
 }
 
