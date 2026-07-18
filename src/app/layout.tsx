@@ -1,0 +1,40 @@
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "心动小猪恋爱档案",
+  description: "一份会追着拒绝按钮跑、又认真等你批准的可爱约会邀请。",
+  applicationName: "心动小猪恋爱档案",
+  keywords: ["约会邀请", "心动档案", "微信分享"],
+  openGraph: {
+    title: "心动小猪恋爱档案",
+    description: "点开这份小秘密，批准一场蓄谋已久的见面。",
+    type: "website",
+    locale: "zh_CN",
+  },
+  twitter: {
+    card: "summary",
+    title: "心动小猪恋爱档案",
+    description: "点开这份小秘密，批准一场蓄谋已久的见面。",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: "cover",
+  themeColor: "#f8cfdb",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="zh-CN">
+      <body>{children}</body>
+    </html>
+  );
+}
