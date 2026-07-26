@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { MascotMoment } from "@/components/mascot/MascotMoment";
 import { ArchiveButton } from "@/components/ui/ArchivePrimitives";
 import { FoodChoiceCard } from "@/components/ui/FoodChoiceCard";
@@ -20,6 +21,44 @@ export function FoodScene({
 }) {
   const copy = invitationConfig.copy.food;
   const selectedOption = invitationConfig.foodOptions.find((food) => food.id === selected);
+  const [previewedId, setPreviewedId] = useState<FoodId | null>(null);
+  const [isPickingForYou, setIsPickingForYou] = useState(false);
+  const pickTimerRef = useRef<number | null>(null);
+  const settleTimerRef = useRef<number | null>(null);
+  const surpriseRoundRef = useRef(0);
+
+  useEffect(() => () => {
+    if (pickTimerRef.current !== null) window.clearInterval(pickTimerRef.current);
+    if (settleTimerRef.current !== null) window.clearTimeout(settleTimerRef.current);
+  }, []);
+
+  const chooseForMe = () => {
+    if (isPickingForYou) return;
+
+    const { order, stepMs, settleMs } = invitationConfig.surprisePicker;
+    const startIndex = (surpriseRoundRef.current * 3 + 1) % order.length;
+    const steps = order.length + 4;
+    let step = 0;
+    surpriseRoundRef.current += 1;
+    setIsPickingForYou(true);
+    setPreviewedId(order[startIndex]);
+
+    pickTimerRef.current = window.setInterval(() => {
+      step += 1;
+      const nextId = order[(startIndex + step) % order.length];
+      setPreviewedId(nextId);
+
+      if (step >= steps) {
+        window.clearInterval(pickTimerRef.current ?? undefined);
+        pickTimerRef.current = null;
+        onSelect(nextId);
+        settleTimerRef.current = window.setTimeout(() => {
+          setPreviewedId(null);
+          setIsPickingForYou(false);
+        }, settleMs);
+      }
+    }, stepMs);
+  };
 
   return (
     <SceneFrame variant="food" label={copy.label}>
@@ -37,13 +76,16 @@ export function FoodScene({
             key={food.id}
             food={food}
             selected={selected === food.id}
-            onSelect={() => onSelect(food.id)}
+            previewed={previewedId === food.id}
+            isSurprise={food.id === "surprise"}
+            disabled={isPickingForYou}
+            onSelect={() => food.id === "surprise" ? chooseForMe() : onSelect(food.id)}
           />
         ))}
       </div>
 
       <SpeechBubble tone="mint" live testId="selection-feedback">
-        {selectedOption?.feedback ?? copy.emptyFeedback}
+        {isPickingForYou ? copy.surprisePicking : selectedOption?.feedback ?? copy.emptyFeedback}
       </SpeechBubble>
 
       <div className="food-actions">

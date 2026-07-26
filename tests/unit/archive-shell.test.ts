@@ -37,21 +37,21 @@ test("ArchiveButton delegates press motion to the reduced-motion preference", as
   assert.match(source, /whileTap=\{reducedMotion \? undefined : \{ scale: 0\.96, x: 1, y: 2 \}\}/);
 });
 
-test("global archive shell uses the new semantic palette and shared sticker primitives", async () => {
+test("global healing shell uses the pastel palette and shared sticker primitives", async () => {
   const css = await readFile(
     new URL("../../src/app/globals.css", import.meta.url),
     "utf8",
   );
 
   for (const token of [
-    "--milk-pink",
-    "--pig-pink",
-    "--snout-pink",
-    "--paper",
-    "--sticker-white",
-    "--coral",
+    "--cream",
+    "--sakura",
+    "--peach",
+    "--lilac",
+    "--mint",
+    "--sky",
     "--cocoa",
-    "--soft-shadow",
+    "--shadow",
   ]) {
     assert.match(css, new RegExp(token));
   }

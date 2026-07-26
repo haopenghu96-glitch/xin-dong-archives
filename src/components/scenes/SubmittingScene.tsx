@@ -54,10 +54,10 @@ export function SubmittingScene({ state, onComplete }: { state: InvitationState;
         <div className="submitting-content">
           <h1>{copy.title}</h1>
           <p>{copy.subtitle}</p>
-          <div className="delivery-strip" role="img" aria-label="小猪依次出发、加速并送达约会申请">
+          <div className="delivery-strip" role="img" aria-label="猫猫依次出发、加速并送达约会申请">
             {["出发", "加速", "送达"].map((label, index) => (
               <div className="delivery-panel" key={label} aria-hidden="true">
-                <Mascot mood="courier" className="delivery-panel__pig" animate={index === 1} priority={index === 0} />
+                <Mascot mood="courier" className="delivery-panel__mascot" animate={index === 1} priority={index === 0} />
                 <span>{label}</span>
               </div>
             ))}

@@ -15,7 +15,7 @@ export function SuccessScene({ state, onRevisit }: { state: InvitationState; onR
   const copy = invitationConfig.copy.success;
 
   const sharePlan = async () => {
-    const url = createSharePlanUrl(window.location.origin, {
+    const url = createSharePlanUrl(`${window.location.origin}${window.location.pathname}`, {
       date: state.date,
       time: state.time,
       activityId: state.foodId ?? "surprise",

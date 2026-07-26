@@ -81,7 +81,7 @@ test("Mascot exposes its serious mood and responsive image contract", async () =
   );
 
   assert.match(markup, /data-mood="serious"/);
-  assert.match(markup, /alt="抱着申请板努力装镇定的小猪"/);
+  assert.match(markup, /alt="抱着小信封、认真等待回复的奶油小猫管理员"/);
   assert.match(markup, /sizes="\(max-width: 480px\) 52vw, 240px"/);
 });
 
@@ -192,5 +192,5 @@ test("FoodChoiceCard suppresses its tap and selection motion for reduced-motion 
   assert.match(foodCardSource, /useReducedMotion/);
   assert.match(foodCardSource, /const reducedMotion = useReducedMotion\(\)/);
   assert.match(foodCardSource, /whileTap=\{reducedMotion \? undefined : \{ scale: 0\.96 \}\}/);
-  assert.match(foodCardSource, /y: reducedMotion \? 0 : selected \? -4 : 0/);
+  assert.match(foodCardSource, /previewed \? -6 : 0/);
 });

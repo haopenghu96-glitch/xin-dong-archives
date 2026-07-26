@@ -40,7 +40,7 @@ const expectedDeclineSteps = [
   {
     step: 3,
     buttonLabel: "这边也点不到",
-    mascotNote: "点慢一点，小猪的网快追不上了。",
+    mascotNote: "点慢一点，猫猫的网快追不上了。",
   },
   {
     step: 4,
@@ -55,7 +55,7 @@ const expectedDeclineSteps = [
   {
     step: 6,
     buttonLabel: "让我缓半秒",
-    mascotNote: "按钮在喘气，小猪也在喘气。",
+    mascotNote: "按钮在喘气，猫猫也在喘气。",
   },
   {
     step: 7,
@@ -95,7 +95,7 @@ const expectedDeclineSteps = [
   {
     step: 14,
     buttonLabel: "好啦，不跑了",
-    mascotNote: "按钮认输，小猪还在假装没扑空。",
+    mascotNote: "按钮认输，猫猫还在假装没扑空。",
   },
   {
     step: 15,
@@ -108,7 +108,7 @@ const expectedFoodOptions = [
   {
     id: "hotpot",
     label: "火锅",
-    imageSrc: "/food/hotpot.png",
+    imageSrc: "/food/lumi-v2/hotpot-cat.png",
     fallbackIcon: "hotpot",
     tone: "coral",
     emoji: "🍲",
@@ -118,7 +118,7 @@ const expectedFoodOptions = [
   {
     id: "sushi",
     label: "日料",
-    imageSrc: "/food/sushi.png",
+    imageSrc: "/food/lumi-v2/sushi-cat.png",
     fallbackIcon: "sushi",
     tone: "mint",
     emoji: "🍣",
@@ -128,7 +128,7 @@ const expectedFoodOptions = [
   {
     id: "bbq",
     label: "烤肉",
-    imageSrc: "/food/bbq.png",
+    imageSrc: "/food/lumi-v2/bbq-cat.png",
     fallbackIcon: "bbq",
     tone: "yellow",
     emoji: "🥩",
@@ -138,7 +138,7 @@ const expectedFoodOptions = [
   {
     id: "hunan",
     label: "湘菜",
-    imageSrc: "/food/hunan.png",
+    imageSrc: "/food/lumi-v2/hunan-cat.png",
     fallbackIcon: "hunan",
     tone: "coral",
     emoji: "🌶️",
@@ -148,7 +148,7 @@ const expectedFoodOptions = [
   {
     id: "western",
     label: "西餐",
-    imageSrc: "/food/western.png",
+    imageSrc: "/food/lumi-v2/western-cat.png",
     fallbackIcon: "western",
     tone: "lavender",
     emoji: "🍽️",
@@ -158,7 +158,7 @@ const expectedFoodOptions = [
   {
     id: "dessert",
     label: "甜品",
-    imageSrc: "/food/dessert.png",
+    imageSrc: "/food/lumi-v2/dessert-cat.png",
     fallbackIcon: "dessert",
     tone: "rose",
     emoji: "🍰",
@@ -168,7 +168,7 @@ const expectedFoodOptions = [
   {
     id: "coffee",
     label: "咖啡",
-    imageSrc: "/food/coffee.png",
+    imageSrc: "/food/lumi-v2/tea-cat.png",
     fallbackIcon: "coffee",
     tone: "cream",
     emoji: "☕",
@@ -178,7 +178,7 @@ const expectedFoodOptions = [
   {
     id: "snacks",
     label: "小吃",
-    imageSrc: "/food/snacks.png",
+    imageSrc: "/food/lumi-v2/snacks-cat.png",
     fallbackIcon: "snacks",
     tone: "blue",
     emoji: "🍢",
@@ -188,7 +188,7 @@ const expectedFoodOptions = [
   {
     id: "surprise",
     label: "交给你",
-    imageSrc: "/food/surprise.png",
+    imageSrc: "/food/lumi-v2/surprise-cat.png",
     fallbackIcon: "surprise",
     tone: "yellow",
     emoji: "🎁",
@@ -199,49 +199,49 @@ const expectedFoodOptions = [
 
 const expectedMascots = {
   serious: {
-    src: "/mascot/heart-pig-q/serious-review.png",
-    fallbackSrc: "/mascot/heart-pig-q/serious-review.png",
-    alt: "抱着申请板努力装镇定的小猪",
+    src: "/mascot/momo/letter.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "抱着小信封、认真等待回复的奶油小猫管理员",
   },
   surprised: {
-    src: "/mascot/heart-pig-q/surprised-reaction.png",
-    fallbackSrc: "/mascot/heart-pig-q/serious-review.png",
-    alt: "捂着脸惊喜睁大眼的小猪",
+    src: "/mascot/momo/surprised.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "捂着脸、悄悄惊喜的奶油小猫管理员",
   },
   hunter: {
-    src: "/mascot/heart-pig/hunter-chase.png",
-    fallbackSrc: "/mascot/heart-pig/serious-review.png",
-    alt: "拿着捕心网追线索的小猪",
+    src: "/mascot/momo/calendar.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "拿着小日历和放大镜寻找空闲时间的奶油小猫管理员",
   },
   hunterReady: {
-    src: "/mascot/heart-pig/hunter-ready.png",
-    fallbackSrc: "/mascot/heart-pig/hunter-chase.png",
-    alt: "举着捕心网认真瞄准的小猪",
+    src: "/mascot/momo/calendar.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "举着小日历、认真准备出发的奶油小猫管理员",
   },
   hunterLunge: {
-    src: "/mascot/heart-pig/hunter-lunge.png",
-    fallbackSrc: "/mascot/heart-pig/hunter-chase.png",
-    alt: "伸出捕心网向前扑的小猪",
+    src: "/mascot/momo/calendar.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "小跑着追上来的奶油小猫管理员",
   },
   hunterMiss: {
-    src: "/mascot/heart-pig/hunter-miss.png",
-    fallbackSrc: "/mascot/heart-pig/hunter-chase.png",
-    alt: "扑空后被捕心网罩住的小猪",
+    src: "/mascot/momo/calendar.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "停下来认真想一想的奶油小猫管理员",
   },
   chef: {
-    src: "/mascot/heart-pig/chef-expectation.png",
-    fallbackSrc: "/mascot/heart-pig/serious-review.png",
-    alt: "戴厨师帽抱着面碗的小猪",
+    src: "/mascot/momo/chef.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "端着小甜点、期待开饭的奶油小猫管理员",
   },
   courier: {
-    src: "/mascot/heart-pig/courier-envelope.png",
-    fallbackSrc: "/mascot/heart-pig/serious-review.png",
-    alt: "抱着爱心信封奔跑的小猪",
+    src: "/mascot/momo/courier.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "抱着小信封轻轻跑出去的奶油小猫管理员",
   },
   cool: {
-    src: "/mascot/heart-pig/cool-approved.png",
-    fallbackSrc: "/mascot/heart-pig/serious-review.png",
-    alt: "举着批准章庆祝的小猪",
+    src: "/mascot/momo/surprised.png",
+    fallbackSrc: "/mascot/momo/letter.png",
+    alt: "收到好消息、开心庆祝的奶油小猫管理员",
   },
 } as const;
 
@@ -251,12 +251,18 @@ test("基础配置与三个时间选项逐字段匹配规格", () => {
       requestNo: invitationConfig.requestNo,
       title: invitationConfig.title,
       motion: invitationConfig.motion,
+      surprisePicker: invitationConfig.surprisePicker,
       timeOptions: invitationConfig.timeOptions,
     },
     {
       requestNo: "DATE REQUEST NO.001",
       title: "请批准一场蓄谋已久的见面",
       motion: { page: 0.28, micro: 0.22, pressScale: 0.96 },
+      surprisePicker: {
+        stepMs: 120,
+        settleMs: 260,
+        order: ["hotpot", "sushi", "bbq", "hunan", "western", "dessert", "coffee", "snacks"],
+      },
       timeOptions: [
         {
           value: "15:00",
@@ -301,7 +307,9 @@ test("全部场景文案逐字段匹配规格", () => {
       label: "审批异常提醒",
       title: "等等，你真的批准了？",
       subtitle: "我连被拒绝后的体面台词都准备好了，结果你让我白练了。",
-      mascotNote: "第一格装镇定，第二格心里已经放烟花。",
+      calmLine: "“嗯，收到。”",
+      happyLine: "等下，是真的？！",
+      mascotNote: "嘴上只敢轻轻回应，尾巴已经偷偷翘起来了。",
       approve: "嗯，是真的 ♥",
       slip: "刚刚手滑",
     },
@@ -320,13 +328,14 @@ test("全部场景文案逐字段匹配规格", () => {
       label: "快乐补给 · 第 2 项",
       title: "这次的快乐，吃什么？",
       subtitle: "你负责挑喜欢的，我负责把你喜欢的记住。",
-      emptyFeedback: "先挑一张，小猪保证只偷看你的答案。",
+      emptyFeedback: "先挑一张，猫猫保证只偷看你的答案。",
+      surprisePicking: "猫猫正在替你轻轻挑一份…",
       submit: "装进约会计划 ♥",
     },
     review: {
       label: "历史计划复核",
       title: "再看一眼约会计划",
-      subtitle: "旧存档也换上了新的小猪封面。",
+      subtitle: "旧存档也换上了猫猫的新封面。",
       submit: "确认约会",
     },
     decline: {
@@ -389,7 +398,7 @@ test("菜单使用独立九项真值并逐字段匹配指定顺序", () => {
   }
 });
 
-test("九种小猪 mood、路径、回退和替代文本逐字段匹配规格", () => {
+test("九种猫猫 mood、路径、回退和替代文本逐字段匹配规格", () => {
   assert.deepEqual(Object.keys(invitationConfig.mascots), Object.keys(expectedMascots));
   assert.deepEqual(invitationConfig.mascots, expectedMascots);
 });

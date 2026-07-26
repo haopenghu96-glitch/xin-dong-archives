@@ -61,7 +61,7 @@ export function IntroScene({
     observer.observe(arena);
     observer.observe(button);
     return () => observer.disconnect();
-  }, []);
+  }, [declineStep]);
 
   useEffect(() => {
     const button = declineButtonRef.current;
@@ -73,7 +73,7 @@ export function IntroScene({
 
     button.addEventListener("pointerenter", onPointerEnter);
     return () => button.removeEventListener("pointerenter", onPointerEnter);
-  }, [dodge]);
+  }, [declineStep, dodge]);
 
   useEffect(() => () => {
     if (approveTimerRef.current !== null) window.clearTimeout(approveTimerRef.current);
@@ -97,59 +97,88 @@ export function IntroScene({
         note={declineStep === 0 ? copy.mascotNote : declineCopy.mascotNote}
       />
 
-      <div className="decline-arena" ref={arenaRef} data-testid="decline-arena">
-        <AnimatePresence>
-          {declineStep > 0 ? (
-            <motion.span
-              key={declineStep}
-              className="dodge-trail"
-              data-testid="dodge-trail"
-              aria-hidden="true"
-              style={{ left: position.x, top: position.y }}
-              initial={{ opacity: 0.9, scaleX: 0.4 }}
-              animate={{ opacity: 0, scaleX: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: reducedMotion ? 0.01 : 0.35 }}
-            >
-              · · ·
-            </motion.span>
-          ) : null}
-        </AnimatePresence>
-        <motion.button
-          ref={declineButtonRef}
-          type="button"
-          className="decline-action"
-          data-testid="decline-action"
-          data-dodge-step={declineStep}
-          data-dodge-position={declineStep % 12}
-          aria-label={declineCopy.buttonLabel}
-          onPointerDown={(event) => {
-            if (event.pointerType === "touch" || event.pointerType === "pen") {
-              event.preventDefault();
-              dodge();
-            }
-          }}
-          onClick={(event) => {
-            if (event.detail === 0) dodge();
-          }}
-          initial={false}
-          animate={{ x: position.x, y: position.y, rotate: position.rotate }}
-          transition={reducedMotion
-            ? { duration: 0.01 }
-            : { type: "spring", stiffness: 480, damping: 30 }}
+      <div className={`intro-actions ${declineStep > 0 ? "intro-actions--playing" : ""}`}>
+        <ArchiveButton
+          data-testid="approve-action"
+          className="approve-action"
+          onClick={approve}
+          disabled={approving}
         >
-          {declineCopy.buttonLabel}
-        </motion.button>
-      </div>
+          {copy.approve}
+        </ArchiveButton>
 
-      <ArchiveButton
-        data-testid="approve-action"
-        className="approve-action"
-        onClick={approve}
-        disabled={approving}
-      >
-        {copy.approve}
-      </ArchiveButton>
+        {declineStep === 0 ? (
+          <button
+            ref={declineButtonRef}
+            type="button"
+            className="decline-action decline-action--initial"
+            data-testid="decline-action"
+            data-dodge-step={declineStep}
+            data-dodge-position={declineStep % 12}
+            aria-label={declineCopy.buttonLabel}
+            onPointerDown={(event) => {
+              if (event.pointerType === "touch" || event.pointerType === "pen") {
+                event.preventDefault();
+                dodge();
+              }
+            }}
+            onPointerEnter={(event) => {
+              if (event.pointerType === "mouse") dodge();
+            }}
+            onClick={(event) => {
+              if (event.detail === 0) dodge();
+            }}
+          >
+            {declineCopy.buttonLabel}
+          </button>
+        ) : (
+          <div className="decline-arena" ref={arenaRef} data-testid="decline-arena">
+            <AnimatePresence>
+              <motion.span
+                key={declineStep}
+                className="dodge-trail"
+                data-testid="dodge-trail"
+                aria-hidden="true"
+                style={{ left: position.x, top: position.y }}
+                initial={{ opacity: 0.9, scaleX: 0.4 }}
+                animate={{ opacity: 0, scaleX: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reducedMotion ? 0.01 : 0.35 }}
+              >
+                · · ·
+              </motion.span>
+            </AnimatePresence>
+            <motion.button
+              ref={declineButtonRef}
+              type="button"
+              className="decline-action"
+              data-testid="decline-action"
+              data-dodge-step={declineStep}
+              data-dodge-position={declineStep % 12}
+              aria-label={declineCopy.buttonLabel}
+              onPointerDown={(event) => {
+                if (event.pointerType === "touch" || event.pointerType === "pen") {
+                  event.preventDefault();
+                  dodge();
+                }
+              }}
+              onPointerEnter={(event) => {
+                if (event.pointerType === "mouse") dodge();
+              }}
+              onClick={(event) => {
+                if (event.detail === 0) dodge();
+              }}
+              initial={false}
+              animate={{ x: position.x, y: position.y, rotate: position.rotate }}
+              transition={reducedMotion
+                ? { duration: 0.01 }
+                : { type: "spring", stiffness: 480, damping: 30 }}
+            >
+              {declineCopy.buttonLabel}
+            </motion.button>
+          </div>
+        )}
+      </div>
       {approving ? (
         <motion.span
           className="approval-heart"

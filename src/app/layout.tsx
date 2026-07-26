@@ -3,19 +3,19 @@ import "./globals.css";
 import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
-  title: "心动小猪恋爱档案",
+  title: "Lumi",
   description: "一份会追着拒绝按钮跑、又认真等你批准的可爱约会邀请。",
-  applicationName: "心动小猪恋爱档案",
+  applicationName: "Lumi",
   keywords: ["约会邀请", "心动档案", "微信分享"],
   openGraph: {
-    title: "心动小猪恋爱档案",
+    title: "Lumi",
     description: "点开这份小秘密，批准一场蓄谋已久的见面。",
     type: "website",
     locale: "zh_CN",
   },
   twitter: {
     card: "summary",
-    title: "心动小猪恋爱档案",
+    title: "Lumi",
     description: "点开这份小秘密，批准一场蓄谋已久的见面。",
   },
 };

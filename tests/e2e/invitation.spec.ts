@@ -1,6 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
 import { createSharePlanUrl } from "../../src/lib/share-plan";
 
+const e2eOrigin = `http://127.0.0.1:${process.env.PLAYWRIGHT_PORT ?? 3000}`;
+
 const getLocalDate = (daysFromToday = 0) => {
   const date = new Date();
   date.setDate(date.getDate() + daysFromToday);
@@ -32,7 +34,7 @@ async function chooseSchedule(page: Page, date = getLocalDate(7)) {
   await page.getByTestId("schedule-next").click();
 }
 
-test("不要按钮连续逃跑 18 次并切换三段小猪漫画", async ({ page }) => {
+test("暂不批准连续移动 18 次并切换三段贴纸短剧", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
@@ -40,6 +42,14 @@ test("不要按钮连续逃跑 18 次并切换三段小猪漫画", async ({ page
   const arena = page.getByTestId("decline-arena");
   const observedPositions = new Set<string>();
   const observedSteps: string[] = [];
+
+  await expect(arena).toHaveCount(0);
+  const approveBox = await page.getByTestId("approve-action").boundingBox();
+  const declineBox = await button.boundingBox();
+  expect(approveBox).not.toBeNull();
+  expect(declineBox).not.toBeNull();
+  expect(approveBox!.x).toBeLessThan(declineBox!.x);
+  expect(Math.abs(approveBox!.y - declineBox!.y)).toBeLessThanOrEqual(2);
 
   for (let index = 0; index < 18; index += 1) {
     await button.dispatchEvent("pointerdown", { pointerType: "touch" });
@@ -67,9 +77,9 @@ test("不要按钮连续逃跑 18 次并切换三段小猪漫画", async ({ page
   await expect(page.getByTestId("scene-transition")).toHaveAttribute("data-phase", "INTRO");
 });
 
-test("页面使用草莓牛奶粉纸张底", async ({ page }) => {
+test("页面使用奶油粉彩绘本底色", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(248, 207, 219)");
+  await expect(page.locator("body")).toHaveCSS("background-color", "rgb(248, 232, 232)");
 });
 
 test("桌面靠近、键盘点击均能躲避且 260ms 内只计算一次", async ({ page }) => {
@@ -168,6 +178,23 @@ test("愿意后经二次确认、日程和食物自动提交到成功页", async
   expect(await hearts.evaluateAll((elements) => elements.map((element) => element.getAttribute("aria-hidden")))).toEqual(Array(5).fill("true"));
 });
 
+test("交给猫猫会在前八个选项间轻轻跳选，并落到一个真实食物", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("approve-action").click();
+  await page.getByTestId("confirm-approval").click();
+  await chooseSchedule(page);
+
+  const surprise = page.getByTestId("food-surprise");
+  await surprise.click();
+  await expect(page.getByText("猫猫正在替你轻轻挑一份…")).toBeVisible();
+  await expect(page.locator('[data-previewed="true"]')).toHaveCount(1);
+  await expect(surprise).toHaveAttribute("aria-pressed", "false");
+  await expect.poll(async () => page.locator('.food-choice.is-selected').count(), {
+    timeout: 3_000,
+  }).toBe(1);
+  await expect(page.locator('.food-choice.is-selected')).not.toHaveAttribute("data-testid", "food-surprise");
+});
+
 test("提交写入失败时停在错误态并可重试", async ({ page }) => {
   await page.addInitScript(() => {
     const originalSetItem = Storage.prototype.setItem;
@@ -248,7 +275,7 @@ test("提交中刷新会回到食物确认且不会自动重提", async ({ page 
 test("分享链接可在新设备显示当前和旧版约会菜单", async ({ page }) => {
   const currentDate = getLocalDate(7);
   const legacyDate = getLocalDate(8);
-  const currentUrl = createSharePlanUrl("http://127.0.0.1:3000", {
+  const currentUrl = createSharePlanUrl(e2eOrigin, {
     date: currentDate,
     time: "19:00",
     activityId: "hotpot",
@@ -260,7 +287,7 @@ test("分享链接可在新设备显示当前和旧版约会菜单", async ({ pa
   await expect(page.getByText("晚上 19:00")).toBeVisible();
   await expect(page.getByText("火锅")).toBeVisible();
 
-  const legacyUrl = createSharePlanUrl("http://127.0.0.1:3000", {
+  const legacyUrl = createSharePlanUrl(e2eOrigin, {
     date: legacyDate,
     time: "20:30",
     activityId: "coffee",

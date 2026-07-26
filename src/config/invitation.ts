@@ -24,7 +24,7 @@ const declineSteps = [
   {
     step: 3,
     buttonLabel: "这边也点不到",
-    mascotNote: "点慢一点，小猪的网快追不上了。",
+    mascotNote: "点慢一点，猫猫的网快追不上了。",
   },
   {
     step: 4,
@@ -39,7 +39,7 @@ const declineSteps = [
   {
     step: 6,
     buttonLabel: "让我缓半秒",
-    mascotNote: "按钮在喘气，小猪也在喘气。",
+    mascotNote: "按钮在喘气，猫猫也在喘气。",
   },
   {
     step: 7,
@@ -79,7 +79,7 @@ const declineSteps = [
   {
     step: 14,
     buttonLabel: "好啦，不跑了",
-    mascotNote: "按钮认输，小猪还在假装没扑空。",
+    mascotNote: "按钮认输，猫猫还在假装没扑空。",
   },
   {
     step: 15,
@@ -92,7 +92,7 @@ const foodOptions = [
   {
     id: "hotpot",
     label: "火锅",
-    imageSrc: assetPath("/food/hotpot.png"),
+    imageSrc: assetPath("/food/lumi-v2/hotpot-cat.png"),
     fallbackIcon: "hotpot",
     tone: "coral",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -103,7 +103,7 @@ const foodOptions = [
   {
     id: "sushi",
     label: "日料",
-    imageSrc: assetPath("/food/sushi.png"),
+    imageSrc: assetPath("/food/lumi-v2/sushi-cat.png"),
     fallbackIcon: "sushi",
     tone: "mint",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -114,7 +114,7 @@ const foodOptions = [
   {
     id: "bbq",
     label: "烤肉",
-    imageSrc: assetPath("/food/bbq.png"),
+    imageSrc: assetPath("/food/lumi-v2/bbq-cat.png"),
     fallbackIcon: "bbq",
     tone: "yellow",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -125,7 +125,7 @@ const foodOptions = [
   {
     id: "hunan",
     label: "湘菜",
-    imageSrc: assetPath("/food/hunan.png"),
+    imageSrc: assetPath("/food/lumi-v2/hunan-cat.png"),
     fallbackIcon: "hunan",
     tone: "coral",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -136,7 +136,7 @@ const foodOptions = [
   {
     id: "western",
     label: "西餐",
-    imageSrc: assetPath("/food/western.png"),
+    imageSrc: assetPath("/food/lumi-v2/western-cat.png"),
     fallbackIcon: "western",
     tone: "lavender",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -147,7 +147,7 @@ const foodOptions = [
   {
     id: "dessert",
     label: "甜品",
-    imageSrc: assetPath("/food/dessert.png"),
+    imageSrc: assetPath("/food/lumi-v2/dessert-cat.png"),
     fallbackIcon: "dessert",
     tone: "rose",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -158,7 +158,7 @@ const foodOptions = [
   {
     id: "coffee",
     label: "咖啡",
-    imageSrc: assetPath("/food/coffee.png"),
+    imageSrc: assetPath("/food/lumi-v2/tea-cat.png"),
     fallbackIcon: "coffee",
     tone: "cream",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -169,7 +169,7 @@ const foodOptions = [
   {
     id: "snacks",
     label: "小吃",
-    imageSrc: assetPath("/food/snacks.png"),
+    imageSrc: assetPath("/food/lumi-v2/snacks-cat.png"),
     fallbackIcon: "snacks",
     tone: "blue",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -180,7 +180,7 @@ const foodOptions = [
   {
     id: "surprise",
     label: "交给你",
-    imageSrc: assetPath("/food/surprise.png"),
+    imageSrc: assetPath("/food/lumi-v2/surprise-cat.png"),
     fallbackIcon: "surprise",
     tone: "yellow",
     /** @deprecated Task 8 图片菜单接入后删除。 */
@@ -197,6 +197,11 @@ export const invitationConfig = {
     page: 0.28,
     micro: 0.22,
     pressScale: 0.96,
+  },
+  surprisePicker: {
+    stepMs: 120,
+    settleMs: 260,
+    order: ["hotpot", "sushi", "bbq", "hunan", "western", "dessert", "coffee", "snacks"] as const,
   },
   timeOptions: [
     {
@@ -230,7 +235,9 @@ export const invitationConfig = {
       label: "审批异常提醒",
       title: "等等，你真的批准了？",
       subtitle: "我连被拒绝后的体面台词都准备好了，结果你让我白练了。",
-      mascotNote: "第一格装镇定，第二格心里已经放烟花。",
+      calmLine: "“嗯，收到。”",
+      happyLine: "等下，是真的？！",
+      mascotNote: "嘴上只敢轻轻回应，尾巴已经偷偷翘起来了。",
       approve: "嗯，是真的 ♥",
       slip: "刚刚手滑",
     },
@@ -249,13 +256,14 @@ export const invitationConfig = {
       label: "快乐补给 · 第 2 项",
       title: "这次的快乐，吃什么？",
       subtitle: "你负责挑喜欢的，我负责把你喜欢的记住。",
-      emptyFeedback: "先挑一张，小猪保证只偷看你的答案。",
+      emptyFeedback: "先挑一张，猫猫保证只偷看你的答案。",
+      surprisePicking: "猫猫正在替你轻轻挑一份…",
       submit: "装进约会计划 ♥",
     },
     review: {
       label: "历史计划复核",
       title: "再看一眼约会计划",
-      subtitle: "旧存档也换上了新的小猪封面。",
+      subtitle: "旧存档也换上了猫猫的新封面。",
       submit: "确认约会",
     },
     decline: {
@@ -295,49 +303,49 @@ export const invitationConfig = {
   foodOptions,
   mascots: {
     serious: {
-      src: assetPath("/mascot/heart-pig-q/serious-review.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig-q/serious-review.png"),
-      alt: "抱着申请板努力装镇定的小猪",
+      src: assetPath("/mascot/momo/letter.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "抱着小信封、认真等待回复的奶油小猫管理员",
     },
     surprised: {
-      src: assetPath("/mascot/heart-pig-q/surprised-reaction.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig-q/serious-review.png"),
-      alt: "捂着脸惊喜睁大眼的小猪",
+      src: assetPath("/mascot/momo/surprised.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "捂着脸、悄悄惊喜的奶油小猫管理员",
     },
     hunter: {
-      src: assetPath("/mascot/heart-pig/hunter-chase.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
-      alt: "拿着捕心网追线索的小猪",
+      src: assetPath("/mascot/momo/calendar.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "拿着小日历和放大镜寻找空闲时间的奶油小猫管理员",
     },
     hunterReady: {
-      src: assetPath("/mascot/heart-pig/hunter-ready.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig/hunter-chase.png"),
-      alt: "举着捕心网认真瞄准的小猪",
+      src: assetPath("/mascot/momo/calendar.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "举着小日历、认真准备出发的奶油小猫管理员",
     },
     hunterLunge: {
-      src: assetPath("/mascot/heart-pig/hunter-lunge.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig/hunter-chase.png"),
-      alt: "伸出捕心网向前扑的小猪",
+      src: assetPath("/mascot/momo/calendar.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "小跑着追上来的奶油小猫管理员",
     },
     hunterMiss: {
-      src: assetPath("/mascot/heart-pig/hunter-miss.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig/hunter-chase.png"),
-      alt: "扑空后被捕心网罩住的小猪",
+      src: assetPath("/mascot/momo/calendar.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "停下来认真想一想的奶油小猫管理员",
     },
     chef: {
-      src: assetPath("/mascot/heart-pig/chef-expectation.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
-      alt: "戴厨师帽抱着面碗的小猪",
+      src: assetPath("/mascot/momo/chef.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "端着小甜点、期待开饭的奶油小猫管理员",
     },
     courier: {
-      src: assetPath("/mascot/heart-pig/courier-envelope.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
-      alt: "抱着爱心信封奔跑的小猪",
+      src: assetPath("/mascot/momo/courier.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "抱着小信封轻轻跑出去的奶油小猫管理员",
     },
     cool: {
-      src: assetPath("/mascot/heart-pig/cool-approved.png"),
-      fallbackSrc: assetPath("/mascot/heart-pig/serious-review.png"),
-      alt: "举着批准章庆祝的小猪",
+      src: assetPath("/mascot/momo/surprised.png"),
+      fallbackSrc: assetPath("/mascot/momo/letter.png"),
+      alt: "收到好消息、开心庆祝的奶油小猫管理员",
     },
   },
 } as const;
